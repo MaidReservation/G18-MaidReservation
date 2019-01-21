@@ -27,73 +27,73 @@ public class DemoApplication {
 			Stream.of("นาง","นางสาว","นาย").forEach(title ->{
 
 				if(title.equals("นาง")){
-					TitleName titleNameEntity = new TitleName();
-					titleNameEntity.setTitlenameType("นาง");
-					titleNameRepository.save(titleNameEntity);
+					TitleNameEntity titleNameEntityEntity = new TitleNameEntity();
+					titleNameEntityEntity.setTitlenameType("นาง");
+					titleNameRepository.save(titleNameEntityEntity);
 				}
 
 				if(title.equals("นางสาว")){
-					TitleName titleNameEntity = new TitleName();
-					titleNameEntity.setTitlenameType("นางสาว");
-					titleNameRepository.save(titleNameEntity);
+					TitleNameEntity titleNameEntityEntity = new TitleNameEntity();
+					titleNameEntityEntity.setTitlenameType("นางสาว");
+					titleNameRepository.save(titleNameEntityEntity);
 				}
 
 				if(title.equals("นาย")){
-					TitleName titleNameEntity = new TitleName();
-					titleNameEntity.setTitlenameType("นาย");
-					titleNameRepository.save(titleNameEntity);
+					TitleNameEntity titleNameEntityEntity = new TitleNameEntity();
+					titleNameEntityEntity.setTitlenameType("นาย");
+					titleNameRepository.save(titleNameEntityEntity);
 				}
 
 			});
 
 			Stream.of("แม่บ้าน","แม่บ้านดูแลเด็ก","แม่บ้านดูแลเผู้สูงอายุ","คนดูแดสวน","คนขับรถ").forEach(typeworking ->{
 				if(typeworking.equals("แม่บ้าน")){
-					Typeworking typeworkingEntity = new Typeworking();
-					typeworkingEntity.setTypeworking("แม่บ้าน");
-					typeworkingRepository.save(typeworkingEntity);
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("แม่บ้าน");
+					typeworkingRepository.save(typeworkingEntityEntity);
 				}
 				if(typeworking.equals("แม่บ้านดูแลเด็ก")){
-					Typeworking typeworkingEntity = new Typeworking();
-					typeworkingEntity.setTypeworking("แม่บ้านดูแลเด็ก");
-					typeworkingRepository.save(typeworkingEntity);
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("แม่บ้านดูแลเด็ก");
+					typeworkingRepository.save(typeworkingEntityEntity);
 				}
 				if(typeworking.equals("แม่บ้านดูแลเผู้สูงอายุ")){
-					Typeworking typeworkingEntity = new Typeworking();
-					typeworkingEntity.setTypeworking("แม่บ้านดูแลผู้สูงอายุ");
-					typeworkingRepository.save(typeworkingEntity);
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("แม่บ้านดูแลผู้สูงอายุ");
+					typeworkingRepository.save(typeworkingEntityEntity);
 				}
 				if(typeworking.equals("คนดูแดสวน")){
-					Typeworking typeworkingEntity = new Typeworking();
-					typeworkingEntity.setTypeworking("คนดูแดสวน");
-					typeworkingRepository.save(typeworkingEntity);
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("คนดูแดสวน");
+					typeworkingRepository.save(typeworkingEntityEntity);
 				}
 				if(typeworking.equals("คนขับรถ")){
-					Typeworking typeworkingEntity = new Typeworking();
-					typeworkingEntity.setTypeworking("คนขับรถ");
-					typeworkingRepository.save(typeworkingEntity);
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("คนขับรถ");
+					typeworkingRepository.save(typeworkingEntityEntity);
 				}
 			});
 
 			Stream.of("ทำงานแบบรายวัน","ทำงานแบบรายสัปดาห์","ทำงานแบบรายเดือน","ทำงานแบบรายปี").forEach(workingDate ->{
 				if(workingDate.equals("ทำงานแบบรายวัน")){
-					WorkingDate workingDateEntity = new WorkingDate();
-					workingDateEntity.setTypeworkingDate("ทำงานแบบรายวัน");
-					workingDateRepositoy.save(workingDateEntity);
+					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายวัน");
+					workingDateRepositoy.save(workingDateEntityEntity);
 				}
 				if(workingDate.equals("ทำงานแบบรายสัปดาห์")){
-					WorkingDate workingDateEntity = new WorkingDate();
-					workingDateEntity.setTypeworkingDate("ทำงานแบบรายสัปดาห์");
-					workingDateRepositoy.save(workingDateEntity);
+					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายสัปดาห์");
+					workingDateRepositoy.save(workingDateEntityEntity);
 				}
 				if(workingDate.equals("ทำงานแบบรายเดือน")){
-					WorkingDate workingDateEntity = new WorkingDate();
-					workingDateEntity.setTypeworkingDate("ทำงานแบบรายเดือน");
-					workingDateRepositoy.save(workingDateEntity);
+					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายเดือน");
+					workingDateRepositoy.save(workingDateEntityEntity);
 				}
 				if(workingDate.equals("ทำงานแบบรายปี")){
-					WorkingDate workingDateEntity = new WorkingDate();
-					workingDateEntity.setTypeworkingDate("ทำงานแบบรายปี");
-					workingDateRepositoy.save(workingDateEntity);
+					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายปี");
+					workingDateRepositoy.save(workingDateEntityEntity);
 				}
 			});
 

@@ -1,7 +1,7 @@
 package sut.se.g18.Model;
-import sut.se.g18.Entity.TitleName;
-import sut.se.g18.Entity.Typeworking;
-import sut.se.g18.Entity.WorkingDate;
+import sut.se.g18.Entity.TitleNameEntity;
+import sut.se.g18.Entity.TypeworkingEntity;
+import sut.se.g18.Entity.WorkingDateEntity;
 import lombok.*;
 
 @Data
@@ -83,9 +83,9 @@ public class DataRegister {
         this.typeworkingDateId = typeworkingDateId;
     }
 
-    public void setTitleName(TitleName ti) { }
+    public void setTitleName(TitleNameEntity ti) { }
 
-    public void setWorkingDate(WorkingDate workdate) { }
+    public void setWorkingDate(WorkingDateEntity workdate) { }
 
-    public void setTypeworking(Typeworking typework) { }
+    public void setTypeworking(TypeworkingEntity typework) { }
 }
