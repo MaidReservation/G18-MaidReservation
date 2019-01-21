@@ -14,12 +14,16 @@ public class MaidRegisterEntity {
     @Column(name="maidId",unique = true, nullable = false)
     private @NonNull Long maidId;
     private @NonNull String maidName;
-    private @NonNull String maidAddress;
-    private @NonNull String maidEmail;
+    private  String maidAddress;
+    private  String maidEmail;
     private @NonNull String maidPhone;
-    private @NonNull String province;
-    private @NonNull String district;
-    private @NonNull String canton;
+    private  String province;
+    private  String district;
+    private  String canton;
+
+    //Many To One with Company
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = CompanyEntity.class)
+    private CompanyEntity companyForMaid;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = TitleNameEntity.class)
     private TitleNameEntity titleNameEntity;
@@ -96,6 +100,15 @@ public class MaidRegisterEntity {
     public void setTypeworkingEntity(TypeworkingEntity typeworkingEntity) {
         this.typeworkingEntity = typeworkingEntity;
     }
+
+    public CompanyEntity getCompanyForMaid() {
+        return companyForMaid;
+    }
+
+    public void setCompanyForMaid(CompanyEntity companyForMaid) {
+        this.companyForMaid = companyForMaid;
+    }
+
     public WorkingDateEntity getWorkingDateEntity() {
         return workingDateEntity;
     }

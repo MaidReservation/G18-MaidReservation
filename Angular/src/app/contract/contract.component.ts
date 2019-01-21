@@ -13,7 +13,7 @@ export interface ContractElement {
   styleUrls: ['./contract.component.css']
 })
 export class ContractComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'no', 'name', 'company', 'tel'];
+  displayedColumns: string[] = ['select', 'no', 'name', 'company', 'tel', 'cusName'];
   selection = new SelectionModel<ContractElement>(true, []);
 
   companys: Array<any>;
@@ -70,8 +70,12 @@ export class ContractComponent implements OnInit {
 
   selectRow(row) {
     this.selection.toggle(row);
-    this.contract.companySelect = row.companyForMaid.companyName;
-    this.contract.maidSelect = row.maidName;
+    this.contract.companySelect = row.maid.companyForMaid.companyName;
+    this.contract.maidSelect = row.maid.maidName;
+    this.adminService.getPromotion(this.contract.companySelect).subscribe(data => {
+      this.promotions = data;
+      console.log(this.promotions);
+    });
     console.log(this.contract);
   }
 
@@ -84,7 +88,6 @@ export class ContractComponent implements OnInit {
       this.promotions = data;
       console.log(this.promotions);
     });
-
   }
   dataChanged() {
     if (this.contract.companySelect) {
