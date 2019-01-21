@@ -17,8 +17,6 @@ public class WorkingDateEntity {
 
     private @NonNull Long typeworkingDateId;
     private @NonNull String typeworkingDate;
-
-
         public Long getTypeworkingDateId() {
             return typeworkingDateId;
         }
@@ -31,6 +29,4 @@ public class WorkingDateEntity {
         public void setTypeworkingDate(String typeworkingDate) {
             this.typeworkingDate = typeworkingDate;
         }
-
-
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import sut.se.g18.Entity.*;
 import sut.se.g18.Repository.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -31,12 +32,14 @@ public class ContractController {
     private PaymentStatusRepository paymentStatusRepository;
     @Autowired
     private MaidStatusRepository maidStatusRepository;
+    @Autowired
+    private MaidRegisterRepository maidRegisterRepository;
 
     public ContractController(CompanyRepository companyRepository, ContractRepository contractRepository,
                               MaidSelectRepository maidSelectRepository, PromotionRepository promotionRepository,
                               CustomerRepository customerRepository, AdminAccountRepository adminAccountRepository,
                               ContractTypeRepository contractTypeRepository, PaymentStatusRepository paymentStatusRepository,
-                              MaidStatusRepository maidStatusRepository){
+                              MaidStatusRepository maidStatusRepository, MaidRegisterRepository maidRegisterRepository){
         this.companyRepository = companyRepository;
         this.contractRepository = contractRepository;
         this.maidSelectRepository = maidSelectRepository;
@@ -46,6 +49,7 @@ public class ContractController {
         this.contractTypeRepository = contractTypeRepository;
         this.paymentStatusRepository = paymentStatusRepository;
         this.maidStatusRepository = maidStatusRepository;
+        this.maidRegisterRepository = maidRegisterRepository;
     }
 
     @GetMapping(path ="/admin/{adminUsername}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -72,15 +76,23 @@ public class ContractController {
     @GetMapping(path ="/maid/reserve", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<MaidSelectEntity> maidSelectReserve(){
         MaidStatusEntity status = maidStatusRepository.findBystatus("จอง");
-        return maidSelectRepository.findBystatus(status).stream().collect(Collectors.toList());
+        Collection<MaidSelectEntity> maid = maidSelectRepository.findBystatus(status);
+        System.out.println(maid);
+        return maid.stream().collect(Collectors.toList());
     }
 
     @GetMapping(path = "/maid/getdata/{companySelect}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<MaidSelectEntity> getMaidSelect(@PathVariable String companySelect) {
         CompanyEntity company = companyRepository.findBycompanyName(companySelect);
+        Collection<MaidRegisterEntity> maid = maidRegisterRepository.findBycompanyForMaid(company);
         MaidStatusEntity status = maidStatusRepository.findBystatus("จอง");
-        Collection<MaidSelectEntity> M = maidSelectRepository.findBycompanyForMaidAndStatus(company,status);
-        return M.stream().collect(Collectors.toList());
+        Collection<MaidSelectEntity> select = new ArrayList<>();
+        for(MaidRegisterEntity m : maid){
+            if(maidSelectRepository.findBymaid(m).getStatus().equals("จอง")){
+                select.add(maidSelectRepository.findBymaidAndStatus(m,status));
+            }
+        }
+        return select.stream().collect(Collectors.toList());
     }
 
     @GetMapping(path ="/promotion", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -113,8 +125,8 @@ public class ContractController {
 
         CompanyEntity company = companyRepository.findBycompanyName(companySelect);
         newContract.setCompany(company);
-
-        MaidSelectEntity maid = maidSelectRepository.findBymaidName(maidSelect);
+        MaidRegisterEntity maidName = maidRegisterRepository.findBymaidName(maidSelect);
+        MaidSelectEntity maid = maidSelectRepository.findBymaid(maidName);
         newContract.setMaid(maid);
         MaidStatusEntity maidStatus = maidStatusRepository.findBystatus("ทำสัญญาอยู่");
         maid.setStatus(maidStatus);
