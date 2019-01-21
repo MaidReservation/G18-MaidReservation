@@ -33,56 +33,56 @@ public class MaidRegisterController {
     }
 
     @GetMapping(path = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<MaidRegister> Register() {
+    public Collection<MaidRegisterEntity> Register() {
         return maidRegisterRepository.findAll().stream().collect(Collectors.toList());
     }
     /*=======================================================*/
     @GetMapping(path = "/title", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<TitleName> TitleName() {
+    public Collection<TitleNameEntity> TitleName() {
         return titleNameRepository.findAll().stream().collect(Collectors.toList());
     }
 
     @GetMapping("/title-list/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public TitleName titleNameFind(@PathVariable("id") Long id) {
+    public TitleNameEntity titleNameFind(@PathVariable("id") Long id) {
         return titleNameRepository.findByTitlenameId(id);
     }
     /*=======================================================*/
 
     @GetMapping(path = "/typeworking", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<Typeworking> Typeworking() {
+    public Collection<TypeworkingEntity> Typeworking() {
         return typeworkingRepository.findAll().stream().collect(Collectors.toList());
     }
 
     @GetMapping("/typeworking-list/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public Typeworking typeworkingFind(@PathVariable("id") Long id) {
+    public TypeworkingEntity typeworkingFind(@PathVariable("id") Long id) {
         return typeworkingRepository.findByTypeworkingId(id);
     }
     /*=======================================================*/
     @GetMapping(path = "/workingDate", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<WorkingDate> WorkingDate() {
+    public Collection<WorkingDateEntity> WorkingDate() {
         return workingDateRepositoy.findAll().stream().collect(Collectors.toList());
     }
 
     @GetMapping("/workingDate-list/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public WorkingDate workingDateFind(@PathVariable("id") Long id) {
+    public WorkingDateEntity workingDateFind(@PathVariable("id") Long id) {
         return workingDateRepositoy.findByTypeworkingDateId(id);
     }
     /*=======================================================*/
 
     @PostMapping(path = "/regi")
-    public MaidRegister dataRegis(@RequestBody DataRegister dataRegister){
+    public MaidRegisterEntity dataRegis(@RequestBody DataRegister dataRegister){
 
-        TitleName ti =this.titleNameRepository.findByTitlenameId(dataRegister.getTitlenameId());
-        Typeworking typework = this.typeworkingRepository.findByTypeworkingId(dataRegister.getTypeworkingId());
-        WorkingDate workdate = this.workingDateRepositoy.findByTypeworkingDateId(dataRegister.getTypeworkingDateId());
+        TitleNameEntity ti =this.titleNameRepository.findByTitlenameId(dataRegister.getTitlenameId());
+        TypeworkingEntity typework = this.typeworkingRepository.findByTypeworkingId(dataRegister.getTypeworkingId());
+        WorkingDateEntity workdate = this.workingDateRepositoy.findByTypeworkingDateId(dataRegister.getTypeworkingDateId());
 
         //String maidName,String maidAddress,String maidEmail,String maidPhone,String province,
-        //                    String district,String canton,TitleName titleName,Typeworking typeworking,
-        //                    WorkingDate workingDate
-        MaidRegister re = this.maidRegisterRepository.save(new MaidRegister(dataRegister.getMaidName(),dataRegister.getMaidAddress()
+        //                    String district,String canton,TitleNameEntity titleName,TypeworkingEntity typeworking,
+        //                    WorkingDateEntity workingDate
+        MaidRegisterEntity re = this.maidRegisterRepository.save(new MaidRegisterEntity(dataRegister.getMaidName(),dataRegister.getMaidAddress()
                 ,dataRegister.getMaidEmail(),dataRegister.getMaidPhone(),dataRegister.getProvince(),dataRegister.getDistrict()
                 ,dataRegister.getCanton(),ti,typework,workdate));
 

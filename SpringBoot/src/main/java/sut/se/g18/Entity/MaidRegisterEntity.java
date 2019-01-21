@@ -7,7 +7,7 @@ import  javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 @Table (name = "Register")
-public class MaidRegister {
+public class MaidRegisterEntity {
     @Id
     @SequenceGenerator(name="registerSeq",sequenceName="registerSeq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="registerSeq")
@@ -21,19 +21,19 @@ public class MaidRegister {
     private @NonNull String district;
     private @NonNull String canton;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = TitleName.class)
-    private TitleName titleName;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = TitleNameEntity.class)
+    private TitleNameEntity titleNameEntity;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Typeworking.class)
-    private Typeworking typeworking;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeworkingEntity.class)
+    private TypeworkingEntity typeworkingEntity;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = WorkingDate.class)
-    private WorkingDate workingDate;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = WorkingDateEntity.class)
+    private WorkingDateEntity workingDateEntity;
 
-    public MaidRegister(){}
-    public MaidRegister(String maidName,String maidAddress,String maidEmail,String maidPhone,String province,
-                    String district,String canton,TitleName titleName,Typeworking typeworking,
-                    WorkingDate workingDate){
+    public MaidRegisterEntity(){}
+    public MaidRegisterEntity(String maidName, String maidAddress, String maidEmail, String maidPhone, String province,
+                              String district, String canton, TitleNameEntity titleNameEntity, TypeworkingEntity typeworkingEntity,
+                              WorkingDateEntity workingDateEntity){
             this.maidName=maidName;
             this.maidAddress=maidAddress;
             this.maidEmail=maidEmail;
@@ -41,9 +41,9 @@ public class MaidRegister {
             this.province=province;
             this.district=district;
             this.canton=canton;
-            this.titleName=titleName;
-            this.typeworking =typeworking;
-            this.workingDate=workingDate;
+            this.titleNameEntity = titleNameEntity;
+            this.typeworkingEntity = typeworkingEntity;
+            this.workingDateEntity = workingDateEntity;
 
 
     }
@@ -84,22 +84,22 @@ public class MaidRegister {
     public void setDistrict(String district) { this.district = district; }
     public String getCanton() { return canton; }
     public void setCanton(String canton) { this.canton = canton; }
-    public TitleName getTitleName() {
-        return titleName;
+    public TitleNameEntity getTitleNameEntity() {
+        return titleNameEntity;
     }
-    public void setTitleName(TitleName titleName) {
-        this.titleName = titleName;
+    public void setTitleNameEntity(TitleNameEntity titleNameEntity) {
+        this.titleNameEntity = titleNameEntity;
     }
-    public Typeworking getTypeworking() {
-        return typeworking;
+    public TypeworkingEntity getTypeworkingEntity() {
+        return typeworkingEntity;
     }
-    public void setTypeworking(Typeworking typeworking) {
-        this.typeworking = typeworking;
+    public void setTypeworkingEntity(TypeworkingEntity typeworkingEntity) {
+        this.typeworkingEntity = typeworkingEntity;
     }
-    public WorkingDate getWorkingDate() {
-        return workingDate;
+    public WorkingDateEntity getWorkingDateEntity() {
+        return workingDateEntity;
     }
-    public void setWorkingDate(WorkingDate workingDate) {
-        this.workingDate = workingDate;
+    public void setWorkingDateEntity(WorkingDateEntity workingDateEntity) {
+        this.workingDateEntity = workingDateEntity;
     }
 }

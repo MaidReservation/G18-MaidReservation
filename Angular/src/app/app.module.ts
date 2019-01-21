@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { CustomerServiceService } from './service/customer-service.service';
 import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { RegisterComponent } from './register/register.component';
     MatIconModule,
     MatGridListModule,
     MatRadioModule,
+    ReactiveFormsModule
   ],
   providers: [AdminService,CustomerServiceService],
   bootstrap: [AppComponent]

@@ -8,8 +8,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-@Table (name = "WorkingDate")
-public class WorkingDate {
+@Table (name = "WorkingDateEntity")
+public class WorkingDateEntity {
     @Id
     @SequenceGenerator(name="workingDateSeq",sequenceName="workingDateSeq")
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="workingDateSeq")
