@@ -22,13 +22,15 @@ import {MatRadioModule} from '@angular/material/radio';
 import { CustomerServiceService } from './service/customer-service.service';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditContractComponent } from './edit-contract/edit-contract.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginAddminComponent,
     MainAdminComponent,
     ContractComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditContractComponent
   ],
   imports: [
     BrowserModule,

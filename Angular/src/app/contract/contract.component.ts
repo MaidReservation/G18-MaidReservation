@@ -139,6 +139,10 @@ export class ContractComponent implements OnInit {
       this.maids = data;
       console.log(this.maids);
     });
+    this.adminService.getCompany().subscribe(data => {
+      this.companys = data;
+      console.log(this.companys);
+    });
     this.contract.companySelect = null;
     this.contract.maidSelect = null;
     this.contract.contractTypeSelect = null;
