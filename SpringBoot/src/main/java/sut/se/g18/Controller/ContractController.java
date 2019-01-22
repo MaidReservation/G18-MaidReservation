@@ -60,7 +60,17 @@ public class ContractController {
 
     @GetMapping(path ="/company", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<CompanyEntity> getCompany(){
-        return companyRepository.findAll().stream().collect(Collectors.toList());
+        Collection<CompanyEntity> com = new ArrayList<>();
+        Collection<MaidSelectEntity> select = maidSelectRepository.findAll().stream().collect(Collectors.toList());
+        MaidRegisterEntity regis = new MaidRegisterEntity();
+        MaidStatusEntity status = maidStatusRepository.findBystatus("จอง");
+        for(MaidSelectEntity m : select){
+            if(m.getStatus()==status){
+                regis = m.getMaid();
+                com.add(regis.getCompanyForMaid());
+            }
+        }
+        return com.stream().collect(Collectors.toList());
     }
 
     @GetMapping(path ="/customer", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -77,7 +87,6 @@ public class ContractController {
     public Collection<MaidSelectEntity> maidSelectReserve(){
         MaidStatusEntity status = maidStatusRepository.findBystatus("จอง");
         Collection<MaidSelectEntity> maid = maidSelectRepository.findBystatus(status);
-        System.out.println(maid);
         return maid.stream().collect(Collectors.toList());
     }
 
@@ -88,7 +97,7 @@ public class ContractController {
         MaidStatusEntity status = maidStatusRepository.findBystatus("จอง");
         Collection<MaidSelectEntity> select = new ArrayList<>();
         for(MaidRegisterEntity m : maid){
-            if(maidSelectRepository.findBymaid(m).getStatus().equals("จอง")){
+            if(maidSelectRepository.findBymaid(m).getStatus()==status){
                 select.add(maidSelectRepository.findBymaidAndStatus(m,status));
             }
         }
@@ -115,6 +124,11 @@ public class ContractController {
     @GetMapping(path ="/paymentStatus", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<PaymentStatusEntity> paymentStatus(){
         return paymentStatusRepository.findAll().stream().collect(Collectors.toList());
+    }
+
+    @GetMapping(path ="/contract", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Collection<ContractEntity> contract(){
+        return contractRepository.findAll().stream().collect(Collectors.toList());
     }
 
     @PostMapping("/contract/{companySelect}/{maidSelect}/{contractTypeSelect}/{promotionSelect}/{dateStartInput}")
@@ -150,6 +164,22 @@ public class ContractController {
         newContract.setStatus(status);
 
         return contractRepository.save(newContract);
+    }
+
+    @PutMapping("/contract/update/{contractTypeSelect}/{dateStartInput}/{contractId}")
+    public ContractEntity updateContract(@RequestBody ContractEntity updateContractEntity, @PathVariable String contractTypeSelect,
+                                         @PathVariable Date dateStartInput, @PathVariable Long contractId) {
+        ContractEntity updateContract = contractRepository.getOne(contractId);
+        ContractTypeEntity type = contractTypeRepository.findBycontractType(contractTypeSelect);
+        updateContract.setContractType(type);
+        updateContract.setDateStart(dateStartInput);
+
+        return contractRepository.save(updateContract);
+    }
+
+    @DeleteMapping("contract/{contractId}")
+    public void deleteContract(@PathVariable Long contractId){
+        contractRepository.deleteById(contractId);
     }
 
 }
