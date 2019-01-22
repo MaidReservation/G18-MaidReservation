@@ -23,6 +23,7 @@ import { CustomerServiceService } from './service/customer-service.service';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
+import { CustomerComponent } from './customer/customer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { EditContractComponent } from './edit-contract/edit-contract.component';
     MainAdminComponent,
     ContractComponent,
     RegisterComponent,
-    EditContractComponent
+    EditContractComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
