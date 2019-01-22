@@ -26,7 +26,7 @@ public class CustomerController {
 
   @Autowired
   public CustomerController(CountryCodeRepository countryCodeRepository, CustomerRepository customerRepository,
-                             SexRepository sexRepository, TitleNameRepository titleNameRepository){
+                            SexRepository sexRepository, TitleNameRepository titleNameRepository){
     this.countryCodeRepository = countryCodeRepository;
     this.customerRepository = customerRepository;
     this.sexRepository = sexRepository;
@@ -53,17 +53,22 @@ public class CustomerController {
     return titleNameRepository.findAll().stream().collect(Collectors.toList());
   }
 
-  @PostMapping("/customer/{titleName}/{customerName}/{sex}/{email}/{pass}/{countryCode}/{phone}/{address}")
+  @PostMapping("/customer/{titleName}/{customerName}/{sex}/{personal}/{email}/{pass}/{countryCode}/{phone}/{address}")
   public CustomerEntity customer(@RequestBody CustomerEntity cus, @PathVariable String titleName, @PathVariable String customerName,
-                                 @PathVariable String sex, @PathVariable String email, @PathVariable String pass, @PathVariable Long countryCode,
+                                 @PathVariable String sex, @PathVariable String personal, @PathVariable String email, @PathVariable String pass, @PathVariable Long countryCode,
                                  @PathVariable String phone, @PathVariable String address) {
     CustomerEntity customerEntity = new CustomerEntity();
     TitleNameEntity title = titleNameRepository.findBytitlename(titleName);
     CountryCodeEntity countrycode = countryCodeRepository.findBycountrycodeid(countryCode);
     SexEntity csex = sexRepository.findBycustomersex(sex);
-
+                                  System.out.println(personal);
+                                  System.out.println(titleName);
+                                  System.out.println(countryCode);
+                                  System.out.println(sex);
     customerEntity.setTitleName(title);
     customerEntity.setCustomername(customerName);
+    customerEntity.setCustomerper(personal);
+
     customerEntity.setCustomeremail(email);
     customerEntity.setCountry(countrycode);
     customerEntity.setCustomerphone(phone);

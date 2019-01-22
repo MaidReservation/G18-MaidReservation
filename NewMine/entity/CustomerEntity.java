@@ -23,6 +23,7 @@ public class CustomerEntity {
     private  String customeremail;
     private  String customerphone;
     private  String customerpass;
+    private  String customerper;
 
     @ManyToOne(fetch=FetchType.EAGER, targetEntity = CountryCodeEntity.class)
     private CountryCodeEntity country;
@@ -39,12 +40,13 @@ public class CustomerEntity {
     }
 
     public CustomerEntity(String customername, String customeraddress,
-                          String customeremail, String customerphone, String customerpass) {
+                          String customeremail, String customerphone, String customerpass, String customerper) {
         this.customername = customername;
         this.customeraddress = customeraddress;
         this.customeremail = customeremail;
         this.customerphone = customerphone;
         this.customerpass= customerpass;
+        this.customerper = customerper;
 
     }
 
@@ -110,6 +112,15 @@ public class CustomerEntity {
     public String getCustomerphone() {
         return customerphone;
     }
+
+    public void setCustomerper(String customerper) {
+        this.customerper = customerper;
+    }
+
+    public String getCustomerper() {
+        return customerper;
+    }
+
 
     public void setCustomerpass(String customerpass){this.customerpass = customerpass;}
 

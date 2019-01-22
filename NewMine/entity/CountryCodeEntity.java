@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 import javax.persistence.Entity;
-import java.util.List;
+//import java.util.List;
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
