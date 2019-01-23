@@ -73,11 +73,6 @@ public class ContractController {
         return com.stream().collect(Collectors.toList());
     }
 
-    @GetMapping(path ="/customer", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<CustomerEntity> customer(){
-        return customerRepository.findAll().stream().collect(Collectors.toList());
-    }
-
     @GetMapping(path ="/maid", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<MaidSelectEntity> maidSelect(){
         return maidSelectRepository.findAll().stream().collect(Collectors.toList());
