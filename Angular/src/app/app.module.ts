@@ -1,3 +1,5 @@
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -24,6 +26,10 @@ import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { CustomerComponent } from './customer/customer.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentService } from './service/payment.service';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +38,8 @@ import { CustomerComponent } from './customer/customer.component';
     ContractComponent,
     RegisterComponent,
     EditContractComponent,
-    CustomerComponent
+    CustomerComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +61,10 @@ import { CustomerComponent } from './customer/customer.component';
     MatIconModule,
     MatGridListModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule
   ],
-  providers: [AdminService,CustomerServiceService],
+  providers: [AdminService, CustomerServiceService, PaymentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
