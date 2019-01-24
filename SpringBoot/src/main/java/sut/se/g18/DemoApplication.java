@@ -22,7 +22,8 @@ public class DemoApplication {
 						   ContractTypeRepository contractTypeRepository, PaymentStatusRepository paymentStatusRepository,
 						   MaidStatusRepository maidStatusRepository,MaidRegisterRepository maidRegisterRepository, TitleNameRepository titleNameRepository,
 						   TypeworkingRepository typeworkingRepository, WorkingDateRepositoy workingDateRepositoy,
-						   CountryCodeRepository countryCodeRepository, SexRepository sexRepository){
+						   CountryCodeRepository countryCodeRepository, SexRepository sexRepository,
+						   BankRepository bankRepository, PaymentRepository paymentRepository, TypepaymentRepository typepaymentRepository){
 		return args -> {
 
 			//Insert Country_code
@@ -193,7 +194,17 @@ public class DemoApplication {
 					workingDateRepositoy.save(workingDateEntityEntity);
 				}
 			});
+			Stream.of("ธนาคารไทยพานิชย์","ธนาคารกรุงไทย","ธนาคารกสิกรไทย","ธนาคารออมสิน","ธนาคารกรุงเทพ").forEach(bankname -> {
+				BankEntity bank = new BankEntity();
+				bank.setBankname(bankname);
+				bankRepository.save(bank);
+			});
 
+			Stream.of("Visa","Paypal","MasterCard","Amex","JBC").forEach(typepay -> {
+                TypepaymentEntity type = new TypepaymentEntity();
+                type.setTypename(typepay);
+                typepaymentRepository.save(type);
+            });
 		    AdminAccountEntity admin = new AdminAccountEntity();
 		    admin.setAdminUsername("1234");
 		    admin.setAdminPassword("4321");
@@ -231,6 +242,7 @@ public class DemoApplication {
 
 			CustomerEntity cus = new CustomerEntity();
 			cus.setCustomerName("Pitchayut CheeseJa");
+			cus.setCustomerEmail("sut@gg.com");
 			customerRepository.save(cus);
 
 		    CompanyEntity c1 = new CompanyEntity();

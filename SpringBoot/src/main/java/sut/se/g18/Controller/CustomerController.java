@@ -69,7 +69,7 @@ public class CustomerController {
     customerEntity.setCustomerName(customerName);
     customerEntity.setCustomerper(personal);
 
-    customerEntity.setCustomeremail(email);
+    customerEntity.setCustomerEmail(email);
     customerEntity.setCountry(countrycode);
     customerEntity.setCustomerphone(phone);
     customerEntity.setCustomeraddress(address);

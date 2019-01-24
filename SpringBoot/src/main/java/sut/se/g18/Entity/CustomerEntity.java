@@ -18,7 +18,7 @@ public class CustomerEntity {
     private @NonNull Long customerId;
     private @NonNull String customerName;
     private  String customeraddress;
-    private  String customeremail;
+    private  String customerEmail;
     private  String customerphone;
     private  String customerpass;
     private  String customerper;
@@ -56,12 +56,12 @@ public class CustomerEntity {
         this.customeraddress = customeraddress;
     }
 
-    public String getCustomeremail() {
-        return customeremail;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public void setCustomeremail(String customeremail) {
-        this.customeremail = customeremail;
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
     public String getCustomerphone() {
